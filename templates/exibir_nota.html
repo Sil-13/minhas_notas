@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if nota %}{{ nota.titulo }}{% else %}Nota não encontrada{% endif %}</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #f0f0f0;
+            font-family: monospace;
+            font-size: 1em;
+            margin: 20px;
+        }
+        h1 {
+            color: #a9b16f;
+            margin-bottom: 15px;
+        }
+        p {
+            line-height: 1.5;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        a {
+            color: #6cb6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .edit-button {
+            padding: 8px 12px;
+            background-color: #007bff; /* Azul para editar */
+            color: #fff;
+            border: 1px solid #0056b3;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 1em;
+            margin-top: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .edit-button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            padding: 8px 12px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 3px;
+            color: #f0f0f0;
+            font-family: monospace;
+            font-size: 1em;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #555;
+            border-color: #777;
+        }
+    </style>
+</head>
+<body>
+    {% if nota %}
+        <h1>{{ nota.titulo }}</h1>
+        <p>{{ nota.conteudo }}</p>
+        <a class="edit-button" href="{{ url_for('editar_nota', id=nota.id) }}">Editar</a>
+        <a class="back-button" href="{{ url_for('listar_notas') }}">Voltar</a>
+    {% else %}
+        <p>A nota solicitada não foi encontrada.</p>
+        <p><a class="back-button" href="{{ url_for('listar_notas') }}">Voltar para a Lista</a></p>
+    {% endif %}
+</body>
+</html>

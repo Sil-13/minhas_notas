@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Nova Nota</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #f0f0f0;
+            font-family: monospace;
+            font-size: 1em;
+            margin: 20px;
+        }
+        h1 {
+            color: #a9b16f;
+            margin-bottom: 15px;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            border: 1px solid #555;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 1em;
+        }
+        button[type="submit"] {
+            padding: 8px 12px;
+            background-color: #a9b16f; /* Verde para o botão */
+            color: #000;
+            border: 1px solid #555;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 1em;
+        }
+        button[type="submit"]:hover {
+            background-color: #c3cc8a;
+            border-color: #777;
+        }
+        a {
+            color: #6cb6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        p a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 12px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 3px;
+            color: #f0f0f0;
+        }
+        p a:hover {
+            background-color: #555;
+            border-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Criar Nova Nota</h1>
+    <form method="POST">
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+            <label for="conteudo">Conteúdo:</label>
+            <textarea id="conteudo" name="conteudo" rows="5"></textarea>
+        </div>
+        <button type="submit">Salvar Nota</button>
+    </form>
+    <p><a href="{{ url_for('listar_notas') }}">Voltar para Minhas Notas</a></p>
+</body>
+</html>

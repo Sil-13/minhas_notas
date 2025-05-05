@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minhas Notas de aulas</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #f0f0f0;
+            font-family: monospace;
+            font-size: 1em;
+            margin: 20px;
+        }
+        h1 {
+            color: #a9b16f;
+            margin-bottom: 15px;
+        }
+        .command-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .command-info {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+        }
+        .command {
+            color: #6cb6ff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .command:hover {
+            text-decoration: underline;
+        }
+        .char-line-count {
+            color: #888;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        .creation-date {
+            color: #bbb;
+            font-size: 0.7em;
+        }
+        .delete-form {
+            display: inline;
+            margin-left: 10px;
+        }
+        .delete-button {
+            padding: 5px 8px;
+            background-color: #d9534f;
+            color: #fff;
+            border: 1px solid #c9302c;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+        .new-command {
+            margin-top: 20px;
+            padding: 8px 12px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 3px;
+            color: #f0f0f0;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .new-command:hover {
+            background-color: #555;
+            border-color: #777;
+        }
+        .prompt {
+            color: #a9b16f;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minhas notas de aulas</h1>
+    {% for nota in notas %}
+    <div class="command-line">
+        <span class="prompt">>>></span>
+        <div class="command-info">
+            <a class="command" href="{{ url_for('exibir_nota', id=nota.id) }}">{{ nota.titulo }}</a>
+            <span class="char-line-count">({{ nota.conteudo|length }} chars, {{ nota.conteudo.split('\n')|length }} lines)</span>
+            <span class="creation-date">Criado em: {{ nota.data_criacao.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+        </div>
+        <form class="delete-form" method="POST" action="{{ url_for('excluir_nota', id=nota.id) }}">
+            <button class="delete-button" type="submit" onclick="return confirm('Tem certeza que deseja excluir este comando?')">DEL</button>
+        </form>
+    </div>
+    {% else %}
+    <div>Nenhuma nota criada ainda.</div>
+    {% endfor %}
+    <p><a class="new-command" href="{{ url_for('criar_nota') }}">+ Nova nota</a></p>
+</body>
+</html>
